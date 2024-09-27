@@ -17,8 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 from start import views
+from start.views import MyTokenObtainPairView
 from rest_framework.urlpatterns import format_suffix_patterns
 from complete import views as complete_views
+
+
+from rest_framework_simplejwt.views import (
+    TokenRefreshView,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +34,9 @@ urlpatterns = [
     path('api/start/<int:pks>/complete/', complete_views.complete_list),
     path('api/start/<int:pks>/complete/<int:pkc>/', complete_views.complete_detail),
     path('api/complete/<int:pk>', complete_views.complete_detail),
+    
+    path('api/token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
