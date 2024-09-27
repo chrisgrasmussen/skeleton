@@ -22,12 +22,12 @@ from complete import views as complete_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('start/', views.start_list),
-    path('start/<int:pk>/', views.start_detail),
+    path('api/start/', views.start_list),
+    path('api/start/<int:pk>/', views.start_detail),
     
-    path('start/<int:pks>/complete/', complete_views.complete_list),
-    path('start/<int:pks>/complete/<int:pkc>/', complete_views.complete_detail),
-    path('complete/<int:pk>', complete_views.complete_detail),
+    path('api/start/<int:pks>/complete/', complete_views.complete_list),
+    path('api/start/<int:pks>/complete/<int:pkc>/', complete_views.complete_detail),
+    path('api/complete/<int:pk>', complete_views.complete_detail),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
