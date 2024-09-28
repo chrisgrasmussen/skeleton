@@ -22,8 +22,8 @@ def complete_list(request, pks, format=None):
         serializer = CompleteSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def complete_detail(request, pks, pkc, format=None):
