@@ -14,7 +14,7 @@ def complete_list(request, pks, format=None):
     start = Start.objects.get(id=pks)
     
     if request.method == 'GET':
-        completes = Complete.objects.all()
+        completes = start.complete_set.all()
         serializer = CompleteSerializer(completes, many=True)
         return Response(serializer.data)
     
